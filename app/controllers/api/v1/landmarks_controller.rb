@@ -14,7 +14,7 @@ class Api::V1::LandmarksController < ApplicationController
   # http :3000/api/v1/landmarks/1
   def show
     @landmark = Landmark.find(params[:id])
-    render json: @landmark
+    render json: @landmark.as_json(include: :reviews)
   end
 
   # POST /api/v1/landmarks
