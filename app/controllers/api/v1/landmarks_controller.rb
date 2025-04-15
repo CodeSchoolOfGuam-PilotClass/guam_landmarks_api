@@ -1,6 +1,5 @@
 # app/controllers/api/v1/landmarks_controller.rb
 class Api::V1::LandmarksController < ApplicationController
-  # Optional: Add error handling for record not found
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   # GET /api/v1/landmarks
@@ -14,7 +13,8 @@ class Api::V1::LandmarksController < ApplicationController
   # http :3000/api/v1/landmarks/1
   def show
     @landmark = Landmark.find(params[:id])
-    render json: @landmark
+    # Include reviews, ordered newest first
+    render json: @landmark.as_json(include: { reviews: { methods: [], order: { created_at: :desc } } })
   end
 
   # POST /api/v1/landmarks

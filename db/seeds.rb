@@ -34,3 +34,39 @@ Landmark.create!([
 ])
 
 puts "Finished seeding #{Landmark.count} landmarks."
+
+puts "Seeding Reviews..."
+
+two_lovers = Landmark.find_by(name: "Two Lovers Point (Puntan Dos Amåntes)")
+plaza = Landmark.find_by(name: "Plaza de España")
+lamlam = Landmark.find_by(name: "Mount Lamlam")
+sigua = Landmark.find_by(name: "Sigua Falls")
+
+if two_lovers
+  Review.create!([
+    { landmark: two_lovers, rating: 5, comment: "Absolutely breathtaking view!" },
+    { landmark: two_lovers, rating: 4, comment: "Nice spot, a bit crowded but worth it." }
+  ])
+end
+
+if plaza
+  Review.create!([
+    { landmark: plaza, rating: 4, comment: "Interesting history, well-preserved." },
+    { landmark: plaza, rating: 3, comment: "Okay, but not much to *do* besides look." }
+  ])
+end
+
+if lamlam
+   Review.create!([
+    { landmark: lamlam, rating: 5, comment: "Tough hike, but the views are incredible. Felt like the top of the world!" },
+  ])
+end
+
+ if sigua
+   Review.create!([
+    { landmark: sigua, rating: 4, comment: "The waterfall is beautiful, hike can be muddy." },
+  ])
+end
+
+
+puts "Finished seeding #{Review.count} reviews."
